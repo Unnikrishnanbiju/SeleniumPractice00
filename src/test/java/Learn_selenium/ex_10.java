@@ -19,5 +19,12 @@ public class ex_10 {
         driver.findElement(By.className("signInBtn")).click();
         System.out.println(driver.findElement(By.cssSelector("p.error")).getText());
         driver.findElement(By.linkText("Forgot your password?")).click();
+
+        ///X-path
+        driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("Unni");
+        driver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys("Unni@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='Phone Number']")).sendKeys("9999999999");
+
+
     }
 }
