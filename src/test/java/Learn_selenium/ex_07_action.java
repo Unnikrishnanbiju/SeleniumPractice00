@@ -1,31 +1,53 @@
+package Learn_selenium;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class ex_07_action {
 
- WebDriver driver;
+    ChromeDriver driver;
 
     @BeforeTest
     public void setup() {
-        // Set up ChromeDriver
-        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        System.out.println("ChromeDriver setup and browser maximized");
-
     }
 
     @Test
     public void testExample() {
-        // Test code here
-        System.out.println("Test code execution here");
-        // Assertions or verification code here
+        driver.get("https://testautomationpractice.blogspot.com/");
+        driver.manage().window().maximize();
+
+        WebElement name = driver.findElement(By.id("name"));
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(name)
+                .click()
+                .keyDown(Keys.SHIFT)
+                .sendKeys(name, "biju")
+                .keyUp(Keys.SHIFT)
+                .build()
+                .perform();
+
+
+
     }
 
     @AfterTest
-    public void tearDown() {
-        // Code to cleanup or release resources after running tests
+    public void close() {
         System.out.println("Cleanup or resource release code here");
+//        driver.quit(); // Optional: close browser after test
     }
 }
